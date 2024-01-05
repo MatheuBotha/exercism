@@ -1,33 +1,15 @@
-from pprint import pprint
 from string import ascii_lowercase
 reversed_ascii_lowercase = ascii_lowercase[::-1]
 codex = dict(zip(ascii_lowercase, reversed_ascii_lowercase))
 
-def encode_character(c):
-    if c in codex:
-        return codex[c]
-    elif c.isdigit():
-        return c
-    return ''
-
-def encode(plain_text):
-    result = []
-    encoded_character_count = 0
-    for c in plain_text.lower():
-        encoded_character = encode_character(c)
-        if encoded_character != '':
-            result.append(encode_character(c))
-            encoded_character_count += 1
-            if encoded_character_count%5 == 0 and encoded_character_count != 0:
-                result.append(' ')
-    return ''.join(result).strip()
+def encode(plain_text, group_size=5):
+    sanitized_text = ''.join([codex.get(c, c) for c in plain_text.lower() if c.isalnum()])
+    return ' '.join([sanitized_text[i:i+group_size] for i in range(0, len(sanitized_text), group_size)])
 
 def decode(plain_text):
-    return ''.join([encode_character(c) for c in plain_text.lower()])
+    return ''.join([codex.get(c, c) for c in plain_text.lower() if c != ' '])
 
 if __name__ == '__main__':
-    pprint(codex)
-
     examples = [
         'test',
         'x123 yes',
