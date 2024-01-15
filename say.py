@@ -36,6 +36,15 @@ units = {
     9: 'nine',
 }
 
+groups = [
+    '',
+    'thousand',
+    'million',
+    'billion',
+    'trillion',
+    'quadrillion',
+]
+
 def say(number):
     words = []
     number_string = str(number)
@@ -56,14 +65,16 @@ def say(number):
         hundred = group[2] if len(group) > 2 else None
 
         if hundred:
-            group_in_words.append(f'{units[int(hundred)]} hundred and')
+            group_in_words.append(f'{units[int(hundred)]} hundred')
         if ten:
             if ten == '1':
                 group_in_words.append(f'{teens[int(ten+unit)]}')
+            elif ten == '0' and unit == '0':
+                pass
             else:
-                group_in_words.append(f'{tens[int(ten)]}-{units[int(unit)]}')
+                group_in_words.append(f'and {tens[int(ten)]}-{units[int(unit)]}')
         else:
-            group_in_words.append(f'{units[int(unit)]}')
+            group_in_words.append(f'and {units[int(unit)]}')
         print(' '.join(group_in_words))
 
     return ''.join(words)
