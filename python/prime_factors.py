@@ -75,7 +75,3 @@ for example in examples:
     print(example)
     print(fast_factors(example))
     print()
-    # theres literally no way. I am capable of understand everything that is going on. but I can not for the life of me BE the person that is
-    # the cause of the things that are going on. I'm only ever an observer. The harder you work the luckier you get. I'm not working at all right now
-    # listen up dickheads, its a math video, everyone hecking loves math videos. Except you for some reason. Just hit the button what the fuck.
-
